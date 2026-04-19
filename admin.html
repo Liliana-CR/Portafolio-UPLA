@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin | Liliana Canto</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #2d0b3a 0%, #4a154b 50%, #6b1a5e 100%);
+            font-family: 'Segoe UI', 'Poppins', 'Quicksand', sans-serif;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #ff66b2;
+            margin-bottom: 2rem;
+            border-radius: 1rem;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+       .logo {
+    width: 50px;
+    height: 60px;
+    background: linear-gradient(145deg, #ff66b2, #ff3388);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;  /* Para que la imagen no se salga */
+}
+
+        .facultad h3 {
+            color: #ff99cc;
+            font-size: 0.9rem;
+        }
+
+        .facultad h2 {
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+
+        .nav-menu a:hover {
+            background: #ff66b2;
+            color: #2d0b3a;
+        }
+
+        .dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #ff99cc;
+            margin-bottom: 1rem;
+        }
+
+        .bienvenida {
+            background: rgba(255, 51, 136, 0.3);
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .config-github {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .config-github h3 {
+            color: #ff3388;
+            margin-bottom: 1rem;
+        }
+
+        .config-github input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 2px solid #ff99cc;
+            border-radius: 30px;
+        }
+
+        .config-github button {
+            background: #6a2c70;
+        }
+
+        .selector-semana {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .selector-semana h3 {
+            color: #ff99cc;
+            margin-bottom: 1rem;
+        }
+
+        select, button {
+            padding: 10px 15px;
+            border-radius: 30px;
+            border: none;
+            font-size: 1rem;
+            margin: 0.5rem;
+        }
+
+        select {
+            background: white;
+            color: #2d0b3a;
+            min-width: 320px;
+        }
+
+        button {
+            background: #ff3388;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #cc0066;
+        }
+
+        .form-edicion {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .form-edicion input, .form-edicion textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 2px solid #ff99cc;
+            border-radius: 30px;
+            font-family: inherit;
+        }
+
+        .form-edicion textarea {
+            border-radius: 20px;
+        }
+
+        .estado-select {
+            margin: 1rem 0;
+        }
+
+        .estado-select label {
+            margin-right: 1rem;
+            color: #2d0b3a;
+            font-weight: bold;
+        }
+
+        .archivos-section {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 2px dashed #ff99cc;
+        }
+
+        .archivos-section h4 {
+            color: #ff3388;
+            margin-bottom: 1rem;
+        }
+
+        .archivo-item {
+            background: #f9eef7;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .archivo-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .archivo-info a {
+            color: #6a2c70;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn-eliminar-archivo {
+            background: #d9534f;
+            padding: 5px 12px;
+            font-size: 0.8rem;
+        }
+
+        .subir-archivo {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .subir-archivo input[type="file"] {
+            background: white;
+            border: 2px solid #ff99cc;
+        }
+
+        .preview {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f0f0f0;
+            border-radius: 1rem;
+            font-size: 0.9rem;
+            border-left: 4px solid #ff3388;
+        }
+
+        .nav-links {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a, .nav-links button {
+            background: #ff3388;
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .mensaje-exito {
+            background: #4caf50;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .mensaje-error {
+            background: #d9534f;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-area">
+    <div class="logo">
+        <img src="logo.png" alt="Logo UPLA" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+    </div>
+    <div class="facultad">
+        <h3>FACULTAD DE INGENIERÍA</h3>
+        <h2>Sistemas y Computación</h2>
+    </div>
+</div>
+        <div class="nav-menu">
+            <a href="index.html">INICIO</a>
+            <a href="trabajos.html">TRABAJOS</a>
+            <a href="login.html">LOGIN</a>
+        </div>
+    </div>
+
+    <div class="dashboard">
+        <h1> Panel de Administración </h1>
+        <div class="bienvenida"> Bienvenida, <strong>Liliana</strong> - Gestiona tus 16 semanas</div>
+
+        <!-- Configuración de GitHub -->
+        <div class="config-github">
+            <h3> Configuración de GitHub (una sola vez)</h3>
+            <p style="color:#6a2c70; margin-bottom:1rem;">Ingresa tus datos para subir archivos automáticamente a GitHub</p>
+            <input type="text" id="githubUser" placeholder="Tu usuario de GitHub (ej: lilianacanto)">
+            <input type="text" id="githubRepo" placeholder="Nombre del repositorio (ej: mi-portafolio-upla)">
+            <input type="password" id="githubToken" placeholder="Token de acceso personal">
+            <button id="guardarConfigGitHub">💾 Guardar configuración</button>
+            <div id="estadoGitHub" style="margin-top:10px; font-size:0.8rem;"></div>
+        </div>
+
+        <div class="selector-semana">
+            <h3> Selecciona la semana que quieres editar</h3>
+            <select id="semanaSelect">
+                <option value="">-- Selecciona una semana (1 a 16) --</option>
+            </select>
+            <button id="cargarSemana"> Editar esta semana</button>
+        </div>
+
+        <div id="formEditar" class="form-edicion" style="display: none;">
+            <h3 id="semanaTitulo"></h3>
+            <input type="text" id="editTitulo" placeholder="Título (ej: Semana 1)">
+            <textarea id="editDescripcion" rows="3" placeholder="Descripción del trabajo"></textarea>
+            
+            <input type="text" id="editEnlace" placeholder="Enlace de GitHub/Drive (URL)">
+            
+            <div class="estado-select">
+                <label>Estado:</label>
+                <select id="editEstado">
+                    <option value="pendiente">⏳ Pendiente</option>
+                    <option value="subido">📤 Subido</option>
+                    <option value="completado">✅ Completado</option>
+                </select>
+            </div>
+
+            <div class="archivos-section">
+                <h4>📎 Archivos adjuntos (PDF, PPT, imágenes)</h4>
+                
+                <div class="subir-archivo">
+                    <input type="file" id="fileInput" accept=".pdf,.ppt,.pptx,.doc,.docx,.jpg,.png,.gif,.zip">
+                    <button id="btnSubirArchivoGitHub">🚀 Subir a GitHub</button>
+                </div>
+                
+                <div id="listaArchivos"></div>
+                
+                <div id="progresoSubida" style="display:none; margin-top:10px;">
+                    <progress id="barraProgreso" value="0" max="100" style="width:100%; height:20px;"></progress>
+                    <p id="textoProgreso" style="font-size:0.8rem;">Subiendo archivo...</p>
+                </div>
+            </div>
+
+            <button id="guardarCambios">💾 Guardar cambios del trabajo</button>
+            <div class="preview" id="preview"></div>
+        </div>
+
+        <div class="nav-links">
+            <a href="trabajos.html">📚 Ver portafolio</a>
+            <button id="btnExportar">💾 Exportar respaldo</button>
+            <button id="btnImportar">📂 Importar respaldo</button>
+            <a href="#" id="btnCerrarSesion">🚪 Cerrar sesión</a>
+        </div>
+    </div>
+
+    <script>
+        // Verificar login
+        if (localStorage.getItem('adminLogged') !== 'true') {
+            window.location.href = "login.html";
+        }
+
+        // Variables globales
+        let trabajosData = {};
+        let semanaActual = { unidad: null, semanaGlobal: null };
+        let githubConfig = {
+            user: '',
+            repo: '',
+            token: ''
+        };
+
+        // Cargar configuración de GitHub guardada
+        function cargarConfigGitHub() {
+            const saved = localStorage.getItem('github_config');
+            if (saved) {
+                githubConfig = JSON.parse(saved);
+                document.getElementById('githubUser').value = githubConfig.user;
+                document.getElementById('githubRepo').value = githubConfig.repo;
+                document.getElementById('githubToken').value = githubConfig.token;
+                document.getElementById('estadoGitHub').innerHTML = '✅ Configuración de GitHub cargada';
+                document.getElementById('estadoGitHub').style.color = '#4caf50';
+            }
+        }
+
+        // Guardar configuración de GitHub
+        document.getElementById('guardarConfigGitHub').addEventListener('click', function() {
+            githubConfig = {
+                user: document.getElementById('githubUser').value.trim(),
+                repo: document.getElementById('githubRepo').value.trim(),
+                token: document.getElementById('githubToken').value.trim()
+            };
+            
+            if (!githubConfig.user || !githubConfig.repo || !githubConfig.token) {
+                alert('❌ Por favor completa todos los campos de GitHub');
+                return;
+            }
+            
+            localStorage.setItem('github_config', JSON.stringify(githubConfig));
+            document.getElementById('estadoGitHub').innerHTML = '✅ Configuración guardada correctamente';
+            document.getElementById('estadoGitHub').style.color = '#4caf50';
+            setTimeout(() => {
+                document.getElementById('estadoGitHub').innerHTML = '';
+            }, 3000);
+        });
+
+        // Función para subir archivo a GitHub
+        async function subirArchivoAGitHub(archivo, semanaGlobal) {
+            if (!githubConfig.user || !githubConfig.repo || !githubConfig.token) {
+                alert('❌ Primero configura GitHub en la sección superior');
+                return false;
+            }
+
+            const nombreLimpio = archivo.name.replace(/[^a-zA-Z0-9.-]/g, '_');
+            const ruta = `archivos/semana${semanaGlobal}/${nombreLimpio}`;
+            
+            // Mostrar progreso
+            const progresoDiv = document.getElementById('progresoSubida');
+            const barra = document.getElementById('barraProgreso');
+            const texto = document.getElementById('textoProgreso');
+            progresoDiv.style.display = 'block';
+            barra.value = 20;
+            texto.textContent = 'Leyendo archivo...';
+            
+            // Leer archivo como Base64
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = async function(e) {
+                    const contenidoBase64 = e.target.result.split(',')[1];
+                    barra.value = 50;
+                    texto.textContent = 'Conectando con GitHub...';
+                    
+                    const url = `https://api.github.com/repos/${githubConfig.user}/${githubConfig.repo}/contents/${ruta}`;
+                    
+                    // Verificar si el archivo ya existe
+                    let sha = null;
+                    try {
+                        const response = await fetch(url, {
+                            headers: { 
+                                'Authorization': `token ${githubConfig.token}`,
+                                'Accept': 'application/vnd.github.v3+json'
+                            }
+                        });
+                        if (response.ok) {
+                            const data = await response.json();
+                            sha = data.sha;
+                        }
+                    } catch(e) {}
+                    
+                    barra.value = 70;
+                    texto.textContent = 'Subiendo archivo a GitHub...';
+                    
+                    // Subir o actualizar archivo
+                    try {
+                        const response = await fetch(url, {
+                            method: 'PUT',
+                            headers: {
+                                'Authorization': `token ${githubConfig.token}`,
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/vnd.github.v3+json'
+                            },
+                            body: JSON.stringify({
+                                message: `Subir archivo ${nombreLimpio} - Semana ${semanaGlobal}`,
+                                content: contenidoBase64,
+                                sha: sha
+                            })
+                        });
+                        
+                        if (response.ok) {
+                            const data = await response.json();
+                            const urlArchivo = `https://${githubConfig.user}.github.io/${githubConfig.repo}/${ruta}`;
+                            barra.value = 100;
+                            texto.textContent = '¡Archivo subido con éxito!';
+                            setTimeout(() => {
+                                progresoDiv.style.display = 'none';
+                            }, 2000);
+                            
+                            // Actualizar el campo de enlace automáticamente
+                            const enlaceActual = document.getElementById('editEnlace').value;
+                            if (!enlaceActual || enlaceActual === '#') {
+                                document.getElementById('editEnlace').value = urlArchivo;
+                            }
+                            
+                            // Mostrar mensaje de éxito
+                            const mensajeDiv = document.createElement('div');
+                            mensajeDiv.className = 'mensaje-exito';
+                            mensajeDiv.innerHTML = `✅ Archivo subido a GitHub!<br>🔗 URL: <a href="${urlArchivo}" target="_blank">${urlArchivo}</a>`;
+                            document.getElementById('listaArchivos').insertBefore(mensajeDiv, document.getElementById('listaArchivos').firstChild);
+                            setTimeout(() => mensajeDiv.remove(), 5000);
+                            
+                            resolve(urlArchivo);
+                        } else {
+                            const error = await response.json();
+                            throw new Error(error.message || 'Error al subir');
+                        }
+                    } catch(error) {
+                        barra.value = 0;
+                        texto.textContent = `Error: ${error.message}`;
+                        const errorDiv = document.createElement('div');
+                        errorDiv.className = 'mensaje-error';
+                        errorDiv.innerHTML = `❌ Error al subir: ${error.message}`;
+                        document.getElementById('listaArchivos').insertBefore(errorDiv, document.getElementById('listaArchivos').firstChild);
+                        setTimeout(() => errorDiv.remove(), 5000);
+                        reject(error);
+                    }
+                };
+                reader.readAsDataURL(archivo);
+            });
+        }
+
+        // Inicializar estructura de semanas
+        function inicializarSemanas() {
+            trabajosData = {
+                1: { nombre: "Unidad 1 - Optimización y Transacciones", semanas: {} },
+                2: { nombre: "Unidad 2 - Programación en Servidor", semanas: {} },
+                3: { nombre: "Unidad 3 - Bases de Datos NoSQL", semanas: {} },
+                4: { nombre: "Unidad 4 - Administración y Seguridad", semanas: {} }
+            };
+            for (let u = 1; u <= 4; u++) {
+                for (let s = 1; s <= 4; s++) {
+                    const semanaGlobal = (u-1)*4 + s;
+                    trabajosData[u].semanas[semanaGlobal] = {
+                        titulo: `Semana ${semanaGlobal}`,
+                        descripcion: `Trabajo de la Semana ${semanaGlobal} - ${trabajosData[u].nombre}`,
+                        enlace: "#",
+                        estado: "pendiente",
+                        archivos: []
+                    };
+                }
+            }
+        }
+
+        function cargarDatos() {
+            const stored = localStorage.getItem('trabajos_estructura');
+            if (stored) {
+                trabajosData = JSON.parse(stored);
+                for (let u = 1; u <= 4; u++) {
+                    if (trabajosData[u]) {
+                        for (let s = 1; s <= 4; s++) {
+                            const semanaGlobal = (u-1)*4 + s;
+                            if (trabajosData[u].semanas[semanaGlobal] && !trabajosData[u].semanas[semanaGlobal].archivos) {
+                                trabajosData[u].semanas[semanaGlobal].archivos = [];
+                            }
+                        }
+                    }
+                }
+            } else {
+                inicializarSemanas();
+                localStorage.setItem('trabajos_estructura', JSON.stringify(trabajosData));
+            }
+        }
+
+        function guardarDatos() {
+            localStorage.setItem('trabajos_estructura', JSON.stringify(trabajosData));
+        }
+
+        function llenarSelect() {
+            const select = document.getElementById('semanaSelect');
+            select.innerHTML = '<option value="">-- Selecciona una semana (1 a 16) --</option>';
+            for (let u = 1; u <= 4; u++) {
+                for (let s = 1; s <= 4; s++) {
+                    const semanaGlobal = (u-1)*4 + s;
+                    const semana = trabajosData[u]?.semanas[semanaGlobal];
+                    if (semana) {
+                        const option = document.createElement('option');
+                        option.value = `${u}|${semanaGlobal}`;
+                        option.textContent = `${trabajosData[u].nombre} - Semana ${semanaGlobal}`;
+                        select.appendChild(option);
+                    }
+                }
+            }
+        }
+
+        function renderizarListaArchivos() {
+            const contenedor = document.getElementById('listaArchivos');
+            if (!semanaActual.unidad) return;
+            
+            const semana = trabajosData[semanaActual.unidad].semanas[semanaActual.semanaGlobal];
+            const archivos = semana.archivos || [];
+            
+            if (archivos.length === 0) {
+                contenedor.innerHTML = '<p style="color:#999;">📂 No hay archivos subidos para esta semana</p>';
+                return;
+            }
+            
+            let html = '';
+            archivos.forEach((archivo, index) => {
+                const icono = archivo.nombre.split('.').pop();
+                html += `
+                    <div class="archivo-item">
+                        <div class="archivo-info">
+                            📄 <strong>${archivo.nombre}</strong>
+                            <small>(${Math.round(archivo.tamaño / 1024)} KB)</small>
+                            <a href="${archivo.dataURL || archivo.url}" target="_blank">👁️ Ver</a>
+                            <a href="${archivo.dataURL || archivo.url}" download="${archivo.nombre}">⬇️ Descargar</a>
+                        </div>
+                        <button class="btn-eliminar-archivo" onclick="eliminarArchivo(${index})">🗑️</button>
+                    </div>
+                `;
+            });
+            contenedor.innerHTML = html;
+        }
+
+        function eliminarArchivo(index) {
+            if (!semanaActual.unidad) return;
+            const semana = trabajosData[semanaActual.unidad].semanas[semanaActual.semanaGlobal];
+            semana.archivos.splice(index, 1);
+            guardarDatos();
+            renderizarListaArchivos();
+            actualizarPreview();
+        }
+
+        function actualizarPreview() {
+            if (!semanaActual.unidad) return;
+            const semana = trabajosData[semanaActual.unidad].semanas[semanaActual.semanaGlobal];
+            const titulo = document.getElementById('editTitulo').value;
+            const desc = document.getElementById('editDescripcion').value;
+            const enlace = document.getElementById('editEnlace').value;
+            const estado = document.getElementById('editEstado').value;
+            const estadoTexto = estado === 'completado' ? '✅ Completado' : (estado === 'subido' ? '📤 Subido' : '⏳ Pendiente');
+            const numArchivos = (semana.archivos || []).length;
+            document.getElementById('preview').innerHTML = `
+                <strong>📋 Vista previa:</strong><br><br>
+                📌 <strong>Título:</strong> ${titulo}<br>
+                📝 <strong>Descripción:</strong> ${desc}<br>
+                🔗 <strong>Enlace GitHub:</strong> ${enlace !== '#' ? enlace : 'Sin enlace'}<br>
+                🏷️ <strong>Estado:</strong> ${estadoTexto}<br>
+                📎 <strong>Archivos:</strong> ${numArchivos} archivo(s) adjunto(s)
+            `;
+        }
+
+        // Cargar semana seleccionada
+        document.getElementById('cargarSemana').addEventListener('click', function() {
+            const valor = document.getElementById('semanaSelect').value;
+            if (!valor) { alert('Selecciona una semana'); return; }
+            const [unidad, semanaGlobal] = valor.split('|');
+            semanaActual = { unidad: parseInt(unidad), semanaGlobal: parseInt(semanaGlobal) };
+            const semana = trabajosData[unidad].semanas[semanaGlobal];
+            
+            document.getElementById('editTitulo').value = semana.titulo;
+            document.getElementById('editDescripcion').value = semana.descripcion;
+            document.getElementById('editEnlace').value = semana.enlace;
+            document.getElementById('editEstado').value = semana.estado;
+            document.getElementById('semanaTitulo').textContent = `✏️ Editando: ${trabajosData[unidad].nombre} - Semana ${semanaGlobal}`;
+            document.getElementById('formEditar').style.display = 'block';
+            renderizarListaArchivos();
+            actualizarPreview();
+        });
+
+        // Subir archivo a GitHub
+        document.getElementById('btnSubirArchivoGitHub').addEventListener('click', async function() {
+            if (!semanaActual.unidad) {
+                alert('Primero selecciona una semana');
+                return;
+            }
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            if (!file) {
+                alert('Selecciona un archivo');
+                return;
+            }
+            
+            // Subir a GitHub
+            const urlSubida = await subirArchivoAGitHub(file, semanaActual.semanaGlobal);
+            
+            if (urlSubida) {
+                // Guardar referencia en localStorage
+                const semana = trabajosData[semanaActual.unidad].semanas[semanaActual.semanaGlobal];
+                if (!semana.archivos) semana.archivos = [];
+                semana.archivos.push({
+                    nombre: file.name,
+                    tipo: file.type,
+                    tamaño: file.size,
+                    url: urlSubida,
+                    fecha: new Date().toISOString()
+                });
+                guardarDatos();
+                renderizarListaArchivos();
+                actualizarPreview();
+                fileInput.value = '';
+            }
+        });
+
+        // Guardar cambios del trabajo
+        document.getElementById('guardarCambios').addEventListener('click', function() {
+            if (!semanaActual.unidad) return;
+            const semana = trabajosData[semanaActual.unidad].semanas[semanaActual.semanaGlobal];
+            semana.titulo = document.getElementById('editTitulo').value;
+            semana.descripcion = document.getElementById('editDescripcion').value;
+            semana.enlace = document.getElementById('editEnlace').value;
+            semana.estado = document.getElementById('editEstado').value;
+            
+            guardarDatos();
+            alert('✅ Trabajo guardado correctamente');
+            llenarSelect();
+            actualizarPreview();
+        });
+
+        // Eventos para preview
+        document.getElementById('editTitulo')?.addEventListener('input', actualizarPreview);
+        document.getElementById('editDescripcion')?.addEventListener('input', actualizarPreview);
+        document.getElementById('editEnlace')?.addEventListener('input', actualizarPreview);
+        document.getElementById('editEstado')?.addEventListener('change', actualizarPreview);
+
+        // Exportar datos
+        document.getElementById('btnExportar')?.addEventListener('click', function() {
+            const datos = localStorage.getItem('trabajos_estructura');
+            const blob = new Blob([datos], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'portafolio_backup.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+
+        // Importar datos
+        document.getElementById('btnImportar')?.addEventListener('click', function() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'application/json';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    const datos = JSON.parse(ev.target.result);
+                    localStorage.setItem('trabajos_estructura', JSON.stringify(datos));
+                    alert('Datos importados. Recargando...');
+                    location.reload();
+                };
+                reader.readAsText(file);
+            };
+            input.click();
+        });
+
+        // Cerrar sesión
+        document.getElementById('btnCerrarSesion')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('adminLogged');
+            window.location.href = "index.html";
+        });
+
+        // Inicializar
+        cargarDatos();
+        llenarSelect();
+        cargarConfigGitHub();
+    </script>
+</body>
+</html>

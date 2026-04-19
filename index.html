@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio | Liliana Canto - Ingeniería de Sistemas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Poppins', 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #2d0b3a 0%, #4a154b 50%, #6b1a5e 100%);
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+        .header {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #ff66b2;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+    width: 50px;
+    height: 60px;
+    background: linear-gradient(145deg, #ff66b2, #ff3388);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;  /* Para que la imagen no se salga */
+}
+        .facultad h3 {
+            color: #ff99cc;
+            font-size: 0.9rem;
+        }
+
+        .facultad h2 {
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+
+        .nav-menu a:hover {
+            background: #ff66b2;
+            color: #2d0b3a;
+        }
+
+        /* MAIN CONTENT */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 2rem;
+            padding: 3rem;
+            border: 1px solid #ff66b2;
+        }
+
+        .robot-icon {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(145deg, #ff66b2, #ff3388);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 0 30px rgba(255, 51, 136, 0.5);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .robot-icon svg {
+            width: 90px;
+            height: 90px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #ff99cc, #ff66b2, #ff3388);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .descripcion {
+            color: #f0c0e0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 1rem auto;
+        }
+
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: #ff3388;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #ff99cc;
+            border-top: 1px solid rgba(255, 102, 178, 0.3);
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-area">
+    <div class="logo">
+        <img src="logo.png" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+    </div>
+    <div class="facultad">
+        <h3>FACULTAD DE INGENIERÍA</h3>
+        <h2>Sistemas y Computación</h2>
+    </div>
+</div>
+        <div class="nav-menu">
+            <a href="index.html">INICIO</a>
+            <a href="trabajos.html">TRABAJOS</a>
+            <a href="login.html">LOGIN</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="hero">
+            <div class="robot-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C10 2 8 3 8 5H16C16 3 14 2 12 2Z" fill="#fff"/>
+                    <rect x="4" y="5" width="16" height="14" rx="2" fill="#fff"/>
+                    <circle cx="9" cy="10" r="1.5" fill="#ff3388"/>
+                    <circle cx="15" cy="10" r="1.5" fill="#ff3388"/>
+                    <rect x="11" y="13" width="2" height="4" fill="#ff3388"/>
+                    <path d="M7 19L5 22H19L17 19" stroke="#fff" stroke-width="2"/>
+                </svg>
+            </div>
+            <h1>LILIANA PAMELA CANTO ROJAS</h1>
+            <div class="descripcion">
+                <strong>Base de Datos II</strong>
+            </div>
+            <div class="descripcion">
+                 "BIENVENIDO A MI PORTAFOLIO ACADÉMICO" <br>
+               <strong> En esta portafolio veremos  todos los avances en el transcurso del ciclo
+                donde cada semana veremos un tema diferente</strong>.
+            </div>
+            <div class="badge-container">
+                <span class="badge"> Ingenieria de sistemas</span>
+                <span class="badge"> Base de Datos II</span>
+                <span class="badge"> 4 Unidades | 16 Trabajos</span>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        © 2026 | Ingeniería de Sistemas | Portafolio Académico | Base de Datos II
+    </footer>
+</body>
+</html>
